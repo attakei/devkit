@@ -1,0 +1,26 @@
+---
+name: 'Setup aqua'
+description: 'Install aqua and tools declared in aqua.yaml'
+
+inputs:
+  aqua_version:
+    description: 'Version of aqua to install'
+    required: false
+    default: 'v2.55.0'
+  policy_allow:
+    description: 'Run `aqua policy allow` for the policy file of the repository'
+    required: false
+    default: 'true'
+  working_directory:
+    description: 'Directory to run aqua (where aqua.yaml can be found)'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - uses: aquaproj/aqua-installer@11dd79b4e498d471a9385aa9fb7f62bb5f52a73c  # v4.0.4
+      with:
+        aqua_version: ${{ inputs.aqua_version }}
+        policy_allow: ${{ inputs.policy_allow }}
+        working_directory: ${{ inputs.working_directory }}
