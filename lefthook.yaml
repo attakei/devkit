@@ -1,0 +1,11 @@
+---
+pre-commit:
+  parallel: true
+  jobs:
+    - name: 'EditorConfig'
+      glob: '*.*'
+      run: 'editorconfig-checker -disable-indent-size {staged_files}'
+    - name: 'YAML'
+      glob: '*.yaml'
+      run: 'ryl {staged_files}'
+      stage_fixed: true
